@@ -1,0 +1,16 @@
+<h1>Posts</h1>
+<div class="list-group">
+    <div *ngFor="let post of posts, let i=index" class="list-group-item" [ngClass]="{'list-group-item-success':post.loveIts>0, 
+        'list-group-item-danger':post.loveIts<0,
+        '':post.loveIts===0}">
+
+        <h2 class="pull-left list-group-item-heading">{{post.title}}</h2>
+        <!-- <span class="pull-right">{{post.created_at|date:'y MMMM EEEE d'}}</span> -->
+        <span style="font-style:italic" class="pull-right">{{post.created_at|date:'MM/dd/yyyy, hh:mm a'}}</span>
+        <br />
+        <br />
+        <p class="list-group-item-text">{{post.content}}</p>
+        <app-post-list-item [post]="post"></app-post-list-item>
+
+    </div>
+</div>
