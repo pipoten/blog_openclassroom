@@ -7,30 +7,30 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class PostsService {
-  // posts: Post[] = [
-  //   new Post("Mon premier post"),
-  //   new Post("Mon deuxième post"),
-  //   new Post("Mon troisième post")
-  // ];
-  posts:Post[];
+  posts: Post[] = [
+    new Post("Mon premier post"),
+    new Post("Mon deuxième post"),
+    new Post("Mon troisième post")
+  ];
+  // posts:Post[];
   postsSubject = new Subject<Post[]>();
   constructor() {
-    this.getPosts();
+    // this.getPosts();
   }
-  getPosts() {
-    firebase.database().ref('/posts')
-      .on('value', (data) => {
-          this.posts = data.val() ? data.val() : [];
-          this.emitPosts();
-        }
-      );
-  }
+  // getPosts() {
+  //   firebase.database().ref('/posts')
+  //     .on('value', (data) => {
+  //         this.posts = data.val() ? data.val() : [];
+  //         this.emitPosts();
+  //       }
+  //     );
+  // }
   emitPosts() {
     this.postsSubject.next(this.posts);
   }
   savePosts(){
     this.emitPosts();
-    firebase.database().ref('/posts').set(this.posts);
+    // firebase.database().ref('/posts').set(this.posts);
   }
   addPost(post: Post) {
     this.posts.push(post);
